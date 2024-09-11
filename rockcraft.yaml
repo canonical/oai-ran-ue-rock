@@ -32,6 +32,9 @@ parts:
       - g++-12
       - gcc-12
       - openssl
+    override-pull: |
+      craftctl default
+      git apply ${CRAFT_PROJECT_DIR}/patches/getaddrinfo.patch
     override-build: |
       update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-12 100 --slave /usr/bin/g++ g++ /usr/bin/g++-12
       /bin/sh oaienv
